@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.getColors()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,6 +49,19 @@ class ViewController: UIViewController {
     
     func changeColor(red: CGFloat, green: CGFloat, blue: CGFloat) {
         view.backgroundColor = UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1.0)
+    }
+    
+    func getColors() {
+        if let r = UserDefaults.standard.object(forKey: "red") as? CGFloat,
+        let g = UserDefaults.standard.object(forKey: "green") as? CGFloat,
+            let b = UserDefaults.standard.object(forKey: "blue") as? CGFloat {
+            self.changeColor(red: r, green: g, blue: b)
+            
+            self.redSlider.value = Float(r)
+            self.greenSlider.value = Float(g)
+            self.blueSlider.value = Float(b)
+        }
+        
     }
 
 }
